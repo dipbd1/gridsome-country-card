@@ -4,13 +4,13 @@
 		<Author :show-title="true" />
 
 		<!-- List posts -->
-		<!-- <div class="posts">
+		<div class="posts">
 			<PostCard
 				v-for="edge in $page.posts.edges"
 				:key="edge.node.id"
 				:post="edge.node"
 			/>
-		</div> -->
+		</div>
 		<b-container class="bv-example-row" style="">
 			<b-row class="grid-container">
 				<b-col class="grid-item">
@@ -19,17 +19,15 @@
 							title="Countries"
 							sub-title="Card Containing Country Details"
 							class="mb-2"
-								style="height:400px; max-width:300px"
+							style="height:400px; max-width:300px"
 						>
 							<b-card-text>
 								A Simple demonstration of grabing data from a
-								<em>GraphQL</em> end point, and using them to
-								produce cards containing data of countries.
+								<em>GraphQL</em> end point, and using them to produce cards
+								containing data of countries.
 							</b-card-text>
 
-							<b-card-text
-								>Its Nothing Special, Just a demo</b-card-text
-							>
+							<b-card-text>Its Nothing Special, Just a demo</b-card-text>
 
 							<!-- <a href="#" class="card-link">Card link</a>
 							<b-link href="#" class="card-link"
@@ -38,9 +36,7 @@
 						</b-card>
 					</div>
 				</b-col>
-				<template
-					v-for="_country in $page.countries.edges[0].node.countries"
-				>
+				<template v-for="_country in $page.countries.edges[0].node.countries">
 					<b-col :key="_country.emoji">
 						<div>
 							<b-card
