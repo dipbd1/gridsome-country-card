@@ -3,6 +3,14 @@
 		<!-- Author intro -->
 		<Author :show-title="true" />
 
+		<div>
+			<PostCard
+				v-for="edge in $page.experiments.edges"
+				:key="edge.node.id"
+				:post="edge.node"
+			/>
+		</div>
+
 		<!-- List posts -->
 		<div class="posts">
 			<PostCard
@@ -13,12 +21,12 @@
 		</div>
 		<b-container class="bv-example-row" style="">
 			<b-row class="grid-container">
-				<b-col class="grid-item">
+				<b-col>
 					<div>
 						<b-card
 							title="Countries"
 							sub-title="Card Containing Country Details"
-							class="mb-2"
+							class="mb-4 mb-2"
 							style="height:400px; max-width:300px"
 						>
 							<b-card-text>
@@ -40,14 +48,12 @@
 					<b-col :key="_country.emoji">
 						<div>
 							<b-card
-								bg-variant="dark"
-								text-variant="white"
 								:sub-title="_country.continent.name"
 								class="mb-4 mb-2"
 								style="height:400px; max-width:300px;"
 							>
 								<b-card-title>
-									<h4 style="color: white">
+									<h4>
 										{{ _country.name }}
 									</h4>
 								</b-card-title>
@@ -123,6 +129,20 @@ query {
 		}
 	}
 
+	experiments: allExperiment{
+    edges{
+	    node{
+        id
+        title
+        date (format: "D. MMMM YYYY")
+        timeToRead
+        description
+        path
+        
+      }
+    }
+  }
+
 }
 </page-query>
 
@@ -174,17 +194,10 @@ export default {
 };
 </script>
 
-<style>
+<style scopped>
 .grid-container {
 	display: grid;
 	grid-template-columns: auto auto auto;
 	padding: 10px;
-}
-.grid-item {
-	/* background-color: rgba(255, 255, 255, 0.8); */
-	/* border: 1px solid rgba(0, 0, 0, 0.8); */
-	/* padding: 20px; */
-	/* font-size: 30px; */
-	/* text-align: center; */
 }
 </style>
