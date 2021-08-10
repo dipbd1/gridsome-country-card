@@ -13,6 +13,7 @@
       <PostCard v-for="edge in $page.posts.edges" :key="edge.node.id" :post="edge.node" />
     </div> -->
 
+    <!-- Grabing Data after mounting the page -->
     <b-container class="bv-example-row" style="">
       <b-row class="grid-container">
         <b-col>
@@ -38,7 +39,7 @@
             </b-card>
           </div>
         </b-col>
-        <template v-for="_country in $page.countries.edges[0].node.countries">
+        <template v-for="_country in countries">
           <b-col :key="_country.emoji">
             <div>
               <b-card
@@ -139,7 +140,7 @@ query {
 </page-query>
 
 <script>
-// import { GraphQLClient, gql } from "graphql-request";
+import { GraphQLClient, gql } from "graphql-request";
 
 import Author from "~/components/Author.vue";
 import PostCard from "~/components/PostCard.vue";
@@ -152,27 +153,32 @@ export default {
   metaInfo: {
     title: "Welcome",
   },
+  data() {
+    return {
+      countries: [],
+    };
+  },
   async mounted() {
-    // const client = new GraphQLClient("https://countries.trevorblades.com/");
-    // const query = gql`
-    // 	{
-    // 		countries {
-    // 			name
-    // 			continent {
-    // 				name
-    // 			}
-    // 			languages {
-    // 				name
-    // 				native
-    // 			}
-    // 			emoji
-    // 		}
-    // 	}
-    // `;
-    // const countries = await client.request(query);
-    // this.countries = countries.countries;
-    // console.log(countries)
-    // console.log(this.countries);
+    const client = new GraphQLClient("https://countries.trevorblades.com/");
+    const query = gql`
+      {
+        countries {
+          name
+          continent {
+            name
+          }
+          languages {
+            name
+            native
+          }
+          emoji
+        }
+      }
+    `;
+    const countries = await client.request(query);
+    this.countries = countries.countries;
+    console.log(countries);
+    console.log(this.countries);
   },
   methods: {
     languages(_languages) {
