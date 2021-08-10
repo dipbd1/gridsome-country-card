@@ -105,18 +105,18 @@ query {
 	countries:allCountries{
 		edges{
 			node{
-				countries{
+				countries {
 					name
-					continent{
+					continent {
 						name
 					}
-					languages{
+					languages {
 						name
 						native
 					}
 					emoji
-					currency
-					capital
+          currency
+          capital
 				}
 			}
 		}
@@ -172,6 +172,8 @@ export default {
             native
           }
           emoji
+          currency
+          capital
         }
       }
     `;
